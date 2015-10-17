@@ -68,6 +68,9 @@ function init {
 
 			ensureIgnoreRule "/.c9/"
 			ensureIgnoreRule "/.bash.origin.cache/"
+			ensureIgnoreRule ".sm.*"
+			ensureIgnoreRule ".rt/"
+			ensureIgnoreRule ".cache/"
 
 
 			function copyFile {
