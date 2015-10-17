@@ -12,13 +12,13 @@ function init {
 
 
 	function Deploy {
-		BO_format "$VERBOSE" "HEADER" "Installing system ..."
+		BO_format "$VERBOSE" "HEADER" "Publishing system ..."
 
 		BO_log "$VERBOSE" "PWD: $PWD"
 
-	    "0/scripts/install.sh"
+        # TODO: Use declared plugins to publish system
 
-	    # TODO: Install user stacks as well
+echo "TODO: Publish ..."
 
 
 		BO_format "$VERBOSE" "FOOTER"

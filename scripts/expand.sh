@@ -12,11 +12,12 @@ function init {
 
 
     OUR_BASE_DIR="$__BO_DIR__"
-    ZERO_SYSTEM_BASE_DIR="$OUR_BASE_DIR/../../../../.."
 
 
 	function Expand {
 		BO_format "$VERBOSE" "HEADER" "Expanding system ..."
+
+		BO_log "$VERBOSE" "PWD: $PWD"
 
 	    if [ -z "$WORKSPACE_DIR" ]; then
 	        echo "ERROR: The 'WORKSPACE_DIR' environment variable must be set to point to the root of your workspace!"

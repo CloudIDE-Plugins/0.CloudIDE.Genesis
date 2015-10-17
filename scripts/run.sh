@@ -11,8 +11,8 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
-	export WORKSPACE_DIR="$__BO_DIR__"
-	export BOOT_CONFIG_PATH="$__BO_DIR__/PINF.Genesis.ccjson"
+	export WORKSPACE_DIR="$PWD"
+	export BOOT_CONFIG_PATH="$WORKSPACE_DIR/PINF.Genesis.ccjson"
 
 	export PATH_OVERRIDES="$WORKSPACE_DIR/0/0.CloudIDE.Genesis/scripts"
 
@@ -20,13 +20,11 @@ function init {
 	function Run {
 		BO_format "$VERBOSE" "HEADER" "Running system ..."
 
-		pushd "$WORKSPACE_DIR" > /dev/null
+		BO_log "$VERBOSE" "PWD: $PWD"
 
-		    # Start editor
+	    # Start editor
 
-		    "$WORKSPACE_DIR/0/scripts/edit.sh"
-
-		popd > /dev/null
+	    "0/scripts/edit.sh"
 
 		BO_format "$VERBOSE" "FOOTER"
 	}
