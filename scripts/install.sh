@@ -11,12 +11,16 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
+    if [ -z "$Z0_ROOT" ]; then
+		export Z0_ROOT="$__BO_DIR__/../.."
+	fi
+
 	function Deploy {
 		BO_format "$VERBOSE" "HEADER" "Installing system ..."
 
 		BO_log "$VERBOSE" "PWD: $PWD"
 
-	    "0/scripts/install.sh"
+	    "$Z0_ROOT/scripts/install.sh"
 
 	    # TODO: Install user stacks as well
 
