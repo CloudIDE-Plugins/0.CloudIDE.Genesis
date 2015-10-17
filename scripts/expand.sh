@@ -46,8 +46,10 @@ function init {
 
 
 		    GIT_IGNORE_PATH=".git/info/exclude"
+			if [ ! -d "$GIT_IGNORE_PATH/.." ]; then
+				GIT_IGNORE_PATH=".gitignore"
+			fi
 		    BO_log "$VERBOSE" "Prepare git ignore rules file '$GIT_IGNORE_PATH' ..."
-
 			# Ensure trailing newline
 			# @source http://stackoverflow.com/a/16198793/330439
 			[[ $(tail -c1 "$GIT_IGNORE_PATH") && -f "$GIT_IGNORE_PATH" ]] && echo '' >> "$GIT_IGNORE_PATH"
@@ -55,7 +57,7 @@ function init {
 				BO_log "$VERBOSE" "Create ignore file: $GIT_IGNORE_PATH"
 				touch "$GIT_IGNORE_PATH"
 			fi
-			
+
 			function ensureIgnoreRule {
 				BO_log "$VERBOSE" "Ensuring ignore rule '$1' in ignore file: $GIT_IGNORE_PATH"
     			if ! grep -qe "^$1$" $GIT_IGNORE_PATH; then
