@@ -18,7 +18,16 @@ function init {
 
             # TODO: Switch to deploy branch, add template files and zero system submodule and then deploy.
 
-		    "$WORKSPACE_DIR/0/scripts/deploy.sh"
+            # TODO: Use config to determine if to use '0' or '0.dev' for deployment.
+
+
+echo "TODO: Deploy!!"
+            
+            
+            
+            
+
+#		    "$WORKSPACE_DIR/0/scripts/deploy.sh"
 
 		popd > /dev/null
 

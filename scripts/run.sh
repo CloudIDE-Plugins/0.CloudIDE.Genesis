@@ -14,6 +14,8 @@ function init {
 	export WORKSPACE_DIR="$__BO_DIR__"
 	export BOOT_CONFIG_PATH="$__BO_DIR__/PINF.Genesis.ccjson"
 
+	export PATH_OVERRIDES="$WORKSPACE_DIR/0/0.CloudIDE.Genesis/scripts"
+
 
 	function Run {
 		BO_format "$VERBOSE" "HEADER" "Running system ..."
