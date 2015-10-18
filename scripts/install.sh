@@ -11,6 +11,8 @@ fi
 if [ -z "$Z0_ROOT" ]; then
 	export Z0_ROOT="$PWD/0"
 fi
+pwd
+ls -al
 pushd "$Z0_ROOT"
 	pwd
 	ls -al
