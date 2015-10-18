@@ -9,12 +9,11 @@ if [ -z "$HOME" ]; then
 fi
 
 if [ -z "$Z0_ROOT" ]; then
-	export Z0_ROOT="$__BO_DIR__/../.."
+	export Z0_ROOT="$PWD/0"
 fi
 pushd "$Z0_ROOT"
 	pwd
 	ls -al
-	ls -al ..
 	git submodule update --init --rebase lib/bash.origin || true
 	lib/bash.origin/bash.origin BO install
 popd
