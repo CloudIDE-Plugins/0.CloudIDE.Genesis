@@ -70,6 +70,7 @@ function init {
 			ensureIgnoreRule ".rt/"
 			ensureIgnoreRule "npm-debug.log"
 			ensureIgnoreRule ".cache/"
+			ensureIgnoreRule ".gitmodules.initialized"
 
 
 			function copyFile {
