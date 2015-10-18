@@ -1,8 +1,4 @@
 #!/bin/bash -e
-if [ -z "$npm_config_argv" ]; then
-	echo "ERROR: Must run with 'npm install'!"
-	exit 1
-fi
 if [ -z "$Z0_ROOT" ]; then
 	export Z0_ROOT="$PWD/0"
 fi
@@ -14,19 +10,27 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
-	function Deploy {
+    BO_sourcePrototype "$__BO_DIR__/activate.sh"
+
+
+	function Start {
 		BO_format "$VERBOSE" "HEADER" "Starting system ..."
 
+		pushd "$WORKSPACE_DIR" > /dev/null
 
-    	export BOOT_CONFIG_PATH="$PWD/PINF.Genesis.ccjson"
+		    BO_log "$VERBOSE" "WORKSPACE_DIR: $WORKSPACE_DIR"
+			BO_log "$VERBOSE" "PWD: $PWD"
 
-        BO_sourcePrototype "$Z0_ROOT/scripts/start.sh"
+	    	export BOOT_CONFIG_PATH="$WORKSPACE_DIR/PINF.Genesis.ccjson"
 
+	        BO_sourcePrototype "$Z0_ROOT/scripts/start.sh"
+
+		popd > /dev/null
 
 		BO_format "$VERBOSE" "FOOTER"
 	}
 
-	Deploy $@
+	Start $@
 
 }
 init $@

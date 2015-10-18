@@ -11,21 +11,24 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
-	export WORKSPACE_DIR="$PWD"
-	export Z0_ROOT="$WORKSPACE_DIR/0"
-	export BOOT_CONFIG_PATH="$WORKSPACE_DIR/PINF.Genesis.ccjson"
-
-	export PATH_OVERRIDES="$WORKSPACE_DIR/0/0.CloudIDE.Genesis/scripts"
+    BO_sourcePrototype "$__BO_DIR__/activate.sh"
 
 
 	function Run {
 		BO_format "$VERBOSE" "HEADER" "Running system ..."
 
-		BO_log "$VERBOSE" "PWD: $PWD"
+		pushd "$WORKSPACE_DIR" > /dev/null
 
-	    # Start editor
+		    BO_log "$VERBOSE" "WORKSPACE_DIR: $WORKSPACE_DIR"
+			BO_log "$VERBOSE" "PWD: $PWD"
 
-	    "$Z0_ROOT/scripts/edit.sh"
+		    # Start editor
+
+		    "$Z0_ROOT/scripts/edit.sh"
+
+		    # TODO: Boot default workspace processes. Currently running part of (dev.sh)
+
+		popd > /dev/null
 
 		BO_format "$VERBOSE" "FOOTER"
 	}

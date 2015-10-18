@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 if [ -z "$HOME" ]; then
 	echo "ERROR: 'HOME' environment variable is not set!"
 	exit 1
@@ -11,24 +11,19 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
+    BO_sourcePrototype "$__BO_DIR__/activate.sh"
+
+
     OUR_BASE_DIR="$__BO_DIR__"
 
 
 	function Expand {
 		BO_format "$VERBOSE" "HEADER" "Expanding system ..."
 
-		BO_log "$VERBOSE" "PWD: $PWD"
-
-	    if [ -z "$WORKSPACE_DIR" ]; then
-	        echo "ERROR: The 'WORKSPACE_DIR' environment variable must be set to point to the root of your workspace!"
-	        exit 1;
-	    fi
-	    
-	    export Z0_ROOT="$WORKSPACE_DIR/0"
-
-	    BO_log "$VERBOSE" "Acting on workspace directory: $WORKSPACE_DIR"
-
 		pushd "$WORKSPACE_DIR" > /dev/null
+
+		    BO_log "$VERBOSE" "WORKSPACE_DIR: $WORKSPACE_DIR"
+			BO_log "$VERBOSE" "PWD: $PWD"
 
 		    BO_log "$VERBOSE" "Checking prerequisites ..."
 
@@ -73,6 +68,7 @@ function init {
 			ensureIgnoreRule "/.bash.origin.cache/"
 			ensureIgnoreRule ".sm.*"
 			ensureIgnoreRule ".rt/"
+			ensureIgnoreRule "npm-debug.log"
 			ensureIgnoreRule ".cache/"
 
 
@@ -87,19 +83,19 @@ function init {
 
 		    BO_log "$VERBOSE" "Copying files ..."
 
-		    copyAndIgnoreFile "$OUR_BASE_DIR/contract.sh" "contract.sh"
-		    copyAndIgnoreFile "$OUR_BASE_DIR/run.sh" "run.sh"
+			# TODO: Copy all files and do it based on declaration accross all nodes.
+#		    copyAndIgnoreFile "$OUR_BASE_DIR/../Meta/Inception.0/Deployment/os.osx/tpl/contract.sh" "contract.sh"
+#		    copyAndIgnoreFile "$OUR_BASE_DIR/../Meta/Inception.0/Deployment/os.osx/tpl/run.sh" "run.sh"
 
-		popd > /dev/null
 
-		pushd "$Z0_ROOT" > /dev/null
-			# Ensure zero system is installed
-			npm install
+			# Ensure workspace and zero system is installed
+			"$OUR_BASE_DIR/install.sh"
 
 		popd > /dev/null
 
 		BO_format "$VERBOSE" "FOOTER"
 	}
 
+	Expand $@
 }
 init $@
