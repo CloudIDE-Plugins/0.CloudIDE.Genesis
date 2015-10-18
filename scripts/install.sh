@@ -15,7 +15,7 @@ pushd "$Z0_ROOT"
 	pwd
 	ls -al
 	ls -al ..
-	git submodule update --init --rebase lib/bash.origin
+	git submodule update --init --rebase lib/bash.origin || true
 	lib/bash.origin/bash.origin BO install
 popd
 
