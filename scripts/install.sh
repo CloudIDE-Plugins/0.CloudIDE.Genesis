@@ -11,10 +11,13 @@ fi
 if [ -z "$Z0_ROOT" ]; then
 	export Z0_ROOT="$__BO_DIR__/../.."
 fi
-pushd "$Z0_ROOT" > /dev/null
+pushd "$Z0_ROOT"
+	pwd
+	ls -al
+	ls -al ..
 	git submodule update --init --rebase lib/bash.origin
 	lib/bash.origin/bash.origin BO install
-popd > /dev/null
+popd
 
 # Source https://github.com/bash-origin/bash.origin
 . "$HOME/.bash.origin"
