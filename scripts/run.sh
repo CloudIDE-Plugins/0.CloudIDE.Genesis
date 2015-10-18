@@ -12,6 +12,7 @@ function init {
 
 
 	export WORKSPACE_DIR="$PWD"
+	export Z0_ROOT="$WORKSPACE_DIR/0"
 	export BOOT_CONFIG_PATH="$WORKSPACE_DIR/PINF.Genesis.ccjson"
 
 	export PATH_OVERRIDES="$WORKSPACE_DIR/0/0.CloudIDE.Genesis/scripts"
@@ -24,7 +25,7 @@ function init {
 
 	    # Start editor
 
-	    "0/scripts/edit.sh"
+	    "$Z0_ROOT/scripts/edit.sh"
 
 		BO_format "$VERBOSE" "FOOTER"
 	}

@@ -23,6 +23,8 @@ function init {
 	        echo "ERROR: The 'WORKSPACE_DIR' environment variable must be set to point to the root of your workspace!"
 	        exit 1;
 	    fi
+	    
+	    export Z0_ROOT="$WORKSPACE_DIR/0"
 
 	    BO_log "$VERBOSE" "Acting on workspace directory: $WORKSPACE_DIR"
 
@@ -87,6 +89,12 @@ function init {
 
 		    copyAndIgnoreFile "$OUR_BASE_DIR/contract.sh" "contract.sh"
 		    copyAndIgnoreFile "$OUR_BASE_DIR/run.sh" "run.sh"
+
+		popd > /dev/null
+
+		pushd "$Z0_ROOT" > /dev/null
+			# Ensure zero system is installed
+			npm install
 
 		popd > /dev/null
 

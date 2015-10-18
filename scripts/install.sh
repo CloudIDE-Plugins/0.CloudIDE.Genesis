@@ -28,7 +28,7 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
-	function Deploy {
+	function Install {
 		BO_format "$VERBOSE" "HEADER" "Installing system ..."
 
 		pushd "$Z0_ROOT" > /dev/null
@@ -43,7 +43,7 @@ function init {
 		BO_format "$VERBOSE" "FOOTER"
 	}
 
-	Deploy $@
+	Install $@
 
 }
 init $@
