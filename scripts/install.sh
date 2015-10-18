@@ -31,9 +31,11 @@ function init {
 	function Deploy {
 		BO_format "$VERBOSE" "HEADER" "Installing system ..."
 
-		BO_log "$VERBOSE" "PWD: $PWD"
+		pushd "$Z0_ROOT" > /dev/null
 
-	    "$Z0_ROOT/scripts/install.sh"
+		    npm install
+
+		popd > /dev/null
 
 	    # TODO: Install user stacks as well
 
