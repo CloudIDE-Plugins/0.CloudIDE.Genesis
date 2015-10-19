@@ -9,8 +9,10 @@ if [ -z "$HOME" ]; then
 fi
 
 # Bootstrap 'bash.origin' from ZeroSystem
-pwd
-ls -al
+if [ ! -z "$VERBOSE" ]; then
+	pwd
+	ls -al
+fi
 # @source https://github.com/bash-origin/bash.origin/blob/404e6ae62560e2ee1d375bc874f0d9314cdbaa92/bash.origin#L199-L225
 function BO_followPointer {
 	# @source https://github.com/bash-origin/bash.origin/blob/404e6ae62560e2ee1d375bc874f0d9314cdbaa92/bash.origin#L36-L40
@@ -72,8 +74,10 @@ function BO_followPointer {
 }
 BO_followPointer "Z0_ROOT" "$PWD" ".0"
 pushd "$Z0_ROOT"
-	pwd
-	ls -al
+	if [ ! -z "$VERBOSE" ]; then
+		pwd
+		ls -al
+	fi
 	git submodule update --init --rebase lib/bash.origin || true
 	lib/bash.origin/bash.origin BO install
 popd
