@@ -98,10 +98,8 @@ function init {
 
 
 		pushd "$Z0_ROOT" > /dev/null
-
 			BO_format "$VERBOSE" "Ensuring ZeroSystem is installed ..."
 		    npm install
-
 		popd > /dev/null
 
 
@@ -112,16 +110,6 @@ function init {
 				touch ".gitmodules.initialized"
 			fi
 		fi
-
-
-		pushd "$WORKSPACE_DIR" > /dev/null
-
-		    BO_log "$VERBOSE" "WORKSPACE_DIR: $WORKSPACE_DIR"
-			BO_log "$VERBOSE" "PWD: $PWD"
-
-# TODO: Install user stacks as well
-
-		popd > /dev/null
 
 		BO_format "$VERBOSE" "FOOTER"
 	}

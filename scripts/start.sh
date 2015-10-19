@@ -1,6 +1,6 @@
 #!/bin/bash -e
 if [ -z "$Z0_ROOT" ]; then
-	export Z0_ROOT="$PWD/0"
+	export Z0_ROOT="$PWD/.0"
 fi
 # Source https://github.com/bash-origin/bash.origin
 . "$Z0_ROOT/lib/bash.origin/bash.origin"

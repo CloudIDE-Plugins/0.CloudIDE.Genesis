@@ -18,7 +18,10 @@ function init {
 
 
 	function Expand {
-		BO_format "$VERBOSE" "HEADER" "Expanding system ..."
+
+		# POLICY: Expanding a system makes developer tools available that are not typically distributed with the runtime code.
+
+		BO_format "$VERBOSE" "HEADER" "Expanding system for source code development ..."
 
 		pushd "$WORKSPACE_DIR" > /dev/null
 
