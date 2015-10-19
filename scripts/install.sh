@@ -111,6 +111,22 @@ function init {
 			fi
 		fi
 
+
+		if [ "$NO_WORKSPACE_DIR_INSTALL" != "1" ]; then
+			pushd "$WORKSPACE_DIR" > /dev/null
+
+			    BO_log "$VERBOSE" "WORKSPACE_DIR: $WORKSPACE_DIR"
+				BO_log "$VERBOSE" "PWD: $PWD"
+
+				if [ -e "scripts/install.sh" ]; then
+					BO_log "$VERBOSE" "Calling workspace install script '$WORKSPACE_DIR/scripts/install.sh' ..."
+	
+					"scripts/install.sh" $@
+				fi
+
+			popd > /dev/null
+		fi
+
 		BO_format "$VERBOSE" "FOOTER"
 	}
 

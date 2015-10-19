@@ -89,6 +89,8 @@ function init {
 			fi
 
 			# Ensure workspace and zero system is installed
+			# We do NOT trigger the install script in the workspace as we should have been triggered by that script already.
+			NO_WORKSPACE_DIR_INSTALL="1"
 			"$OUR_BASE_DIR/install.sh"
 
 		popd > /dev/null
