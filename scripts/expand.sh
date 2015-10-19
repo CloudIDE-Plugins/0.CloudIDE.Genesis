@@ -71,6 +71,7 @@ function init {
 			ensureIgnoreRule "npm-debug.log"
 			ensureIgnoreRule ".cache/"
 			ensureIgnoreRule ".gitmodules.initialized"
+			ensureIgnoreRule ".0"
 
 
 			function copyFile {
