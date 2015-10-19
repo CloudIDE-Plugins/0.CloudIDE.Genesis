@@ -30,8 +30,13 @@ function init {
 	
 			# TODO: Get platform names from declarations and deploy to each environment or only some
 			#       based on what we are being asked to do.
-			export PLATFORM_NAME="com.heroku"
-	        for file in $(find ./Deployments/**/*.herokuapp.com.*profile.ccjson); do
+			if [ -z "$PLATFORM_NAME" ]; then
+				export PLATFORM_NAME="com.heroku"
+			fi
+
+			BO_log "$VERBOSE" "PLATFORM_NAME: $PLATFORM_NAME"
+
+	        for file in $(find ./Deployments/**.herokuapp.com.*profile.ccjson); do
 	        	file=$(basename $file)
 	        	file=${file%.proto.profile.ccjson}
 	        	file=${file%.profile.ccjson}
