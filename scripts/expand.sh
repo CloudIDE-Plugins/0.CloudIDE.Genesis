@@ -64,13 +64,15 @@ function init {
     			fi
 			}
 
-			ensureIgnoreRule "/.c9/"
-			ensureIgnoreRule "/.bash.origin.cache/"
+			ensureIgnoreRule ".c9"
+			ensureIgnoreRule ".bash.origin.cache"
 			ensureIgnoreRule ".sm.*"
-			ensureIgnoreRule ".rt/"
+			ensureIgnoreRule ".rt"
 			ensureIgnoreRule "npm-debug.log"
 			ensureIgnoreRule ".cache/"
 			ensureIgnoreRule ".gitmodules.initialized"
+			ensureIgnoreRule "node_modules"
+			ensureIgnoreRule "bower_components"
 			ensureIgnoreRule ".0"
 
 
