@@ -54,24 +54,26 @@ function init {
 	
 				function ensureIgnoreRule {
 					BO_log "$VERBOSE" "Ensuring ignore rule '$1' in ignore file: $GIT_IGNORE_PATH"
+					# TODO: Check if prefixed with '!' and ignore if so. The user may want to override default.
 	    			if ! grep -qe "^$1$" $GIT_IGNORE_PATH; then
 	    				BO_log "$VERBOSE" "Append '$1' to ignore file: $GIT_IGNORE_PATH"
 	    			    echo -e "$1" >> $GIT_IGNORE_PATH
 	    			fi
 				}
-	
-				ensureIgnoreRule ".c9"
-				ensureIgnoreRule ".bash.origin.cache"
+
+				ensureIgnoreRule "/.c9"
+				ensureIgnoreRule "/.bash.origin.cache"
 				ensureIgnoreRule ".sm.*"
 				ensureIgnoreRule ".rt"
 				ensureIgnoreRule "npm-debug.log"
-				ensureIgnoreRule ".cache/"
+				ensureIgnoreRule ".cache"
 				ensureIgnoreRule ".gitmodules.initialized"
 				ensureIgnoreRule "node_modules"
 				ensureIgnoreRule "bower_components"
-				ensureIgnoreRule ".0"
-	
-	
+				ensureIgnoreRule "/.0"
+				ensureIgnoreRule "/_exports/deploy"
+
+
 				function copyFile {
 	    		    BO_log "$VERBOSE" "Copying file '$1' to '$2'"
 	    		    cp -f "$1" "$2"
