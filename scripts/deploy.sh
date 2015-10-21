@@ -35,15 +35,16 @@ function init {
 			fi
 
 			BO_log "$VERBOSE" "PLATFORM_NAME: $PLATFORM_NAME"
+			BO_log "$VERBOSE" "ENVIRONMENT_NAME: $ENVIRONMENT_NAME"
 			
 			function deployEnvironment {
 	        	export ENVIRONMENT_NAME="$1"
 	        	BO_log "$VERBOSE" "Deploying '$PWD' to platform '$PLATFORM_NAME' using profile '$ENVIRONMENT_NAME' ..."
 			    "$Z0_ROOT/scripts/deploy.sh"
 			}
-			
+
 			function forEachDeployProfile {
-		        for file in $(find $1 || true); do
+		        for file in $(find $1 2>/dev/null || true); do
 		        	file=$(basename $file)
 		        	file=${file%.proto.profile.ccjson}
 		        	file=${file%.profile.ccjson}
@@ -51,8 +52,12 @@ function init {
 		        done
 			}
 
-			forEachDeployProfile "./Deployments/**.herokuapp.com.*profile.ccjson"
-			forEachDeployProfile "./Deployments/**/*.herokuapp.com.*profile.ccjson"
+			if [ -z "$ENVIRONMENT_NAME" ]; then
+				forEachDeployProfile "./Deployments/**.herokuapp.com.*profile.ccjson"
+				forEachDeployProfile "./Deployments/**/*.herokuapp.com.*profile.ccjson"
+			else
+				deployEnvironment "$ENVIRONMENT_NAME"
+			fi
 
 		popd > /dev/null
 
