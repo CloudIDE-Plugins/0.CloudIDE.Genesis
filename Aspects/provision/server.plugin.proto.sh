@@ -77,8 +77,9 @@ function init {
 
 		# Copy files
 		BO_log "$VERBOSE" "Copying files from '$TEMPLATE_BASE_PATH' to '$Z0_WORKSPACE_DIRPATH' ..."
-		cp -Rf "$TEMPLATE_BASE_PATH/".* "$Z0_WORKSPACE_DIRPATH/"
-		cp -Rf "$TEMPLATE_BASE_PATH/"* "$Z0_WORKSPACE_DIRPATH/"
+		pushd "$TEMPLATE_BASE_PATH" > /dev/null
+			tar cf - * | ( cd "$Z0_WORKSPACE_DIRPATH"; tar xfp -)
+		popd > /dev/null
 
 		# Replace variables
 		function replaceInFile {
@@ -92,6 +93,12 @@ function init {
 		replaceInFile "Z0_REPOSITORY_URL" "$Z0_REPOSITORY_URL" "package.json"
 		replaceInFile "Z0_REPOSITORY_COMMIT_ISH" "$Z0_REPOSITORY_COMMIT_ISH" "package.json"
 
+
+		if [ "$Z0_PROJECT_AUTO_COMMIT_CHANGES" == "1" ]; then
+			pushd "$Z0_PROJECT_DIRPATH" > /dev/null
+	            git_commitChanges "Initialized Zero System workspace";
+			popd > /dev/null
+		fi
 
 		BO_format "$VERBOSE" "FOOTER"
 	}

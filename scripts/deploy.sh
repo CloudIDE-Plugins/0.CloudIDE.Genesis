@@ -13,6 +13,8 @@ function init {
 
     BO_sourcePrototype "$__BO_DIR__/activate.sh"
 
+	BO_sourcePrototype "$Z0_ROOT/lib/node.pack/packers/git/packer.proto.sh"
+
 
 	function Deploy {
 		BO_format "$VERBOSE" "HEADER" "Deploying system ..."
@@ -42,6 +44,11 @@ function init {
 						require("fs").writeFileSync(descriptorPath, after, "utf8");
 					}
 				'
+				if [ "$Z0_PROJECT_AUTO_COMMIT_CHANGES" == "1" ]; then
+					pushd "$Z0_PROJECT_DIRPATH" > /dev/null
+			            git_commitChanges "Updated Zero System workspace configuration";
+					popd > /dev/null
+				fi
 			}
 
 		    BO_log "$VERBOSE" "WORKSPACE_DIR: $WORKSPACE_DIR"
@@ -65,6 +72,11 @@ function init {
 					Z0_DEPLOY_MODE="staging"
 				fi
 			fi
+
+			if echo "$npm_config_argv" | grep -q -Ee '"--bundle"'; then
+				Z0_TRIGGER_POSTINSTALL_BUNDLE="1"
+			fi
+
 
 			# We set 'Z0_DEPLOY_ENVIRONMENT_NAME' based on 'Z0_DEPLOY_MODE'
 			if [ "$Z0_DEPLOY_MODE" == "staging" ]; then
@@ -99,6 +111,16 @@ function init {
 
 			BO_log "$VERBOSE" "Z0_DEPLOY_ENVIRONMENT_NAME: $Z0_DEPLOY_ENVIRONMENT_NAME"
 			BO_log "$VERBOSE" "Z0_DEPLOY_PLATFORM_NAME: $Z0_DEPLOY_PLATFORM_NAME"
+
+
+			# Tag repository if there are no tags and we are set to auto-commit changes.
+			if [ "$Z0_PROJECT_AUTO_COMMIT_CHANGES" == "1" ]; then
+				if ! git_hasTags ; then
+					TAG=`node --eval 'process.stdout.write("v" + require("'$PWD'/package.json").version);'`
+		        	BO_log "$VERBOSE" "Tagging repository with first tag '$TAG'!"
+					git tag "$TAG"
+				fi
+			fi
 
 
 			# TODO: Move into `pinf.to.heroku`
