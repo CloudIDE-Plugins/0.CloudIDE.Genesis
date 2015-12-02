@@ -34,6 +34,10 @@ function init {
 #        askForInput "HOSTNAME" "Project hostname" "$HOSTNAME"
 #        NAMESPACE="$(reverse_hostname $HOSTNAME)"
 
+		if [ -z "$Z0_PROJECT_DIRPATH" ]; then
+			echo "ERROR: 'Z0_PROJECT_DIRPATH' environment variable not set!"
+			exit 1
+		fi
 		if [ -z "$Z0_WORKSPACE_DIRPATH" ]; then
 			echo "ERROR: 'Z0_WORKSPACE_DIRPATH' environment variable not set!"
 			exit 1
@@ -51,9 +55,8 @@ function init {
 			exit 1
 		fi
 		if [ -z "$Z0_REPOSITORY_COMMIT_ISH" ]; then
-    		pushd "$Z0_ROOT" > /dev/null
-    		    git_getTag "Z0_REPOSITORY_COMMIT_ISH"
-    		popd > /dev/null
+			echo "ERROR: 'Z0_REPOSITORY_COMMIT_ISH' environment variable not set!"
+			exit 1
 		fi
 		BO_log "$VERBOSE" "Z0_WORKSPACE_DIRPATH: $Z0_WORKSPACE_DIRPATH"
 		BO_log "$VERBOSE" "Z0_WORKSPACE_HOSTNAME: $Z0_WORKSPACE_HOSTNAME"
@@ -61,6 +64,13 @@ function init {
 		BO_log "$VERBOSE" "Z0_REPOSITORY_URL: $Z0_REPOSITORY_URL"
 		BO_log "$VERBOSE" "Z0_REPOSITORY_COMMIT_ISH: $Z0_REPOSITORY_COMMIT_ISH"
 
+
+		# If project is not yet a git repository we make it one.
+		if [ ! -e "$Z0_PROJECT_DIRPATH/.git" ]; then
+			pushd "$Z0_PROJECT_DIRPATH" > /dev/null
+				git init
+			popd > /dev/null
+		fi
 
 		# NOTE: We assume that we will not destroy anything by just copying our template files.
 		# TODO: Use sourcemint lib to copy files.

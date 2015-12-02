@@ -13,22 +13,19 @@ function init {
 	BO_sourcePrototype "node_modules/0.workspace/scripts/expand.proto.sh"
 
 	function InstallConcreteWorkspace {
-		BO_format "$VERBOSE" "HEADER" "Installing concrete workspace ..."
-		BO_log "$VERBOSE" "PWD: $PWD"
 		# **************************************************
 		# **************************************************
 
 
 
 
-		# TODO: Add your custom install code here.		
+		echo "TODO: Add your custom install code here!"
 
 
 
 
 		# **************************************************
 		# **************************************************
-		BO_format "$VERBOSE" "FOOTER"
 	}
 
 	0.workspace.ensure.abstract $@
