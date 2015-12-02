@@ -32,6 +32,9 @@ function init {
         exit 1;
     fi
 
+	BO_log "$VERBOSE" "WORKSPACE_DIR: $WORKSPACE_DIR"
+	BO_log "$VERBOSE" "Z0_ROOT: $Z0_ROOT"
+
     BO_sourcePrototype "$Z0_ROOT/scripts/activate.sh"
 
 }

@@ -72,7 +72,7 @@ function init {
 				ensureIgnoreRule "bower_components"
 				ensureIgnoreRule "/.0"
 				ensureIgnoreRule "/_exports/deploy"
-
+				ensureIgnoreRule "/.installed"
 
 				function copyFile {
 	    		    BO_log "$VERBOSE" "Copying file '$1' to '$2'"
