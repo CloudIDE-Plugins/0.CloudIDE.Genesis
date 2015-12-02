@@ -1,5 +1,5 @@
 {
-    "name": "%%NAMESPACE%%",
+    "name": "%%Z0_WORKSPACE_NAMESPACE%%",
     "version": "0.0.0",
     "private": true,
     "config": {
