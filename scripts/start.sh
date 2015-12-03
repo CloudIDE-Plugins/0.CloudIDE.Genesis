@@ -1,4 +1,11 @@
 #!/bin/bash -e
+
+	pushd "/app" > /dev/null
+		pwd
+		ls -al
+	popd > /dev/null
+
+
 if [ -z "$Z0_ROOT" ]; then
 	export Z0_ROOT="$PWD/.0"
 fi
@@ -20,12 +27,6 @@ function init {
 
 		    BO_log "$VERBOSE" "WORKSPACE_DIR: $WORKSPACE_DIR"
 			BO_log "$VERBOSE" "PWD: $PWD"
-
-	pushd "/app" > /dev/null
-		pwd
-		ls -al
-	popd > /dev/null
-
 
 	    	export BOOT_CONFIG_PATH="$WORKSPACE_DIR/PINF.Genesis.ccjson"
 
