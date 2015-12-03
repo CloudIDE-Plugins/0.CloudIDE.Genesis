@@ -62,11 +62,9 @@ function init {
 
 
 			if [ -z "$Z0_DEPLOY_MODE" ]; then
-				if [ -z "$npm_config_argv" ]; then
-					echo "ERROR: This script must be run via 'npm run <script>' or the 'Z0_DEPLOY_MODE' environment variable must be set!"
-					exit 1
-				fi
 				if echo "$npm_config_argv" | grep -q -Ee '"--production"'; then
+					Z0_DEPLOY_MODE="production"
+				elif echo "$@" | grep -q -Ee '\s--production(\s|$)'; then
 					Z0_DEPLOY_MODE="production"
 				else
 					Z0_DEPLOY_MODE="staging"

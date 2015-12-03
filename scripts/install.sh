@@ -132,5 +132,12 @@ function init {
 
 	Install $@
 
+
+	pushd "/app" > /dev/null
+		pwd
+		ls -al
+	popd > /dev/null
+
+	
 }
 init $@

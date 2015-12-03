@@ -21,6 +21,12 @@ function init {
 		    BO_log "$VERBOSE" "WORKSPACE_DIR: $WORKSPACE_DIR"
 			BO_log "$VERBOSE" "PWD: $PWD"
 
+	pushd "/app" > /dev/null
+		pwd
+		ls -al
+	popd > /dev/null
+
+
 	    	export BOOT_CONFIG_PATH="$WORKSPACE_DIR/PINF.Genesis.ccjson"
 
 	        BO_sourcePrototype "$Z0_ROOT/scripts/start.sh"
