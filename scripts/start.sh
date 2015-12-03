@@ -1,11 +1,4 @@
 #!/bin/bash -e
-
-	pushd "/app" > /dev/null
-		pwd
-		ls -al
-	popd > /dev/null
-
-
 if [ -z "$Z0_ROOT" ]; then
 	export Z0_ROOT="$PWD/.0"
 fi
