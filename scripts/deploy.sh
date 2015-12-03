@@ -117,6 +117,25 @@ function init {
 			BO_log "$VERBOSE" "Z0_DEPLOY_PLATFORM_NAME: $Z0_DEPLOY_PLATFORM_NAME"
 
 
+			# Ensure we have a Deployment config file.
+			# TODO: Move into `pinf.to.heroku`
+			if [ ! -e "Deployments/$Z0_DEPLOY_ENVIRONMENT_NAME.herokuapp.com.proto.profile.ccjson" ]; then
+				BO_log "$VERBOSE" "Writing profile config file for environment to '$WORKSPACE_DIR/Deployments/$Z0_DEPLOY_ENVIRONMENT_NAME.herokuapp.com.proto.profile.ccjson'"
+				echo '{
+    "@": {
+        "$": [
+            "{{ENV.Z0_ROOT}}/Deployments/production.proto.profile.ccjson"
+        ]
+    }
+}' > "Deployments/$Z0_DEPLOY_ENVIRONMENT_NAME.herokuapp.com.proto.profile.ccjson"
+				if [ "$Z0_PROJECT_AUTO_COMMIT_CHANGES" == "1" ]; then
+					pushd "$Z0_PROJECT_DIRPATH" > /dev/null
+			            git_commitChanges "Wrote Zero System deployment profile configuration file";
+					popd > /dev/null
+				fi
+			fi
+
+
 			# Tag repository if there are no tags and we are set to auto-commit changes.
 			if [ "$Z0_PROJECT_AUTO_COMMIT_CHANGES" == "1" ]; then
 				if ! git_hasTags ; then
