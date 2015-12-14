@@ -29,6 +29,7 @@
         "update": ".0/0.CloudIDE.Genesis/scripts/update.sh",
         "encrypt": ".0/0.CloudIDE.Genesis/scripts/encrypt.sh",
         "bundle": ".0/0.CloudIDE.Genesis/scripts/bundle.sh",
+        "push": ".0/0.CloudIDE.Genesis/scripts/push.sh",
         "publish": ".0/0.CloudIDE.Genesis/scripts/publish.sh",
         "deploy": ".0/0.CloudIDE.Genesis/scripts/deploy.sh",
         "start": ".0/0.CloudIDE.Genesis/scripts/start.sh",
