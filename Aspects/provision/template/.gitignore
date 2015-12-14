@@ -11,3 +11,4 @@ bower_components
 /.packs/
 /.0
 /_exports/deploy
+/.installed

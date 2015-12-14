@@ -90,6 +90,7 @@ function init {
 		replaceInFile "Z0_WORKSPACE_NAMESPACE" "$Z0_WORKSPACE_NAMESPACE" "stack.ccjson"
 		replaceInFile "Z0_WORKSPACE_HOSTNAME" "$Z0_WORKSPACE_HOSTNAME" "stack.ccjson"
 		replaceInFile "Z0_WORKSPACE_NAMESPACE" "$Z0_WORKSPACE_NAMESPACE" "package.json"
+		replaceInFile "Z0_WORKSPACE_HOSTNAME" "$Z0_WORKSPACE_NAMESPACE" "package.json"
 		replaceInFile "Z0_REPOSITORY_URL" "$Z0_REPOSITORY_URL" "package.json"
 		replaceInFile "Z0_REPOSITORY_COMMIT_ISH" "$Z0_REPOSITORY_COMMIT_ISH" "package.json"
 

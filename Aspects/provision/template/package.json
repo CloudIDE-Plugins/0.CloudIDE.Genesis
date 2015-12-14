@@ -3,6 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "config": {
+        "Z0_WORKSPACE_HOSTNAME": "%%Z0_WORKSPACE_HOSTNAME%%",
+        "Z0_WORKSPACE_NAMESPACE": "%%Z0_WORKSPACE_NAMESPACE%%",
         "Z0_REPOSITORY_URL": "%%Z0_REPOSITORY_URL%%",
         "Z0_REPOSITORY_COMMIT_ISH": "%%Z0_REPOSITORY_COMMIT_ISH%%"
     },
