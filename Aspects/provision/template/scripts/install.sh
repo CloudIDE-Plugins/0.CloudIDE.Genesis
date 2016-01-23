@@ -4,7 +4,9 @@ if [ -z "$HOME" ]; then
 	exit 1
 fi
 # Source https://github.com/bash-origin/bash.origin
-node_modules/0.workspace/node_modules/bash.origin/bash.origin BO install
+if [ -e "node_modules/0.workspace/node_modules/bash.origin/bash.origin" ]; then
+	node_modules/0.workspace/node_modules/bash.origin/bash.origin BO install
+fi
 . "$HOME/.bash.origin"
 function init {
 	eval BO_SELF_BASH_SOURCE="$BO_READ_SELF_BASH_SOURCE"
