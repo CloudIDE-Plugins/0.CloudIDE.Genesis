@@ -78,7 +78,9 @@ pushd "$Z0_ROOT"
 		pwd
 		ls -al
 	fi
-	git submodule update --init --rebase lib/bash.origin
+	if [ -e ".git" ] && [ -e ".gitmodules" ]; then
+		git submodule update --init --rebase lib/bash.origin
+	fi
 	lib/bash.origin/bash.origin BO install
 popd
 
@@ -103,7 +105,7 @@ function init {
 		popd > /dev/null
 
 
-		if [ -f ".git" ] && [ -f ".gitmodules" ]; then
+		if [ -e ".git" ] && [ -e ".gitmodules" ]; then
 			if [ ! -f ".gitmodules.initialized" ]; then
 				echo "Init submodules ..."
 				git submodule update --init --recursive --rebase
