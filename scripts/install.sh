@@ -103,7 +103,7 @@ function init {
 		popd > /dev/null
 
 
-		if [ -f ".gitmodules" ]; then
+		if [ -f ".git" ] && [ -f ".gitmodules" ]; then
 			if [ ! -f ".gitmodules.initialized" ]; then
 				echo "Init submodules ..."
 				git submodule update --init --recursive --rebase
